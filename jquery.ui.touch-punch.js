@@ -41,13 +41,6 @@
     var touch = event.originalEvent.changedTouches[0],
         simulatedEvent = document.createEvent('MouseEvents');
     
-    // Check if element is an input, a textarea or a paragraph
-    if ($(touch.target).is("input") || $(touch.target).is("textarea") || $(touch.target).is("p")) {
-        event.stopPropagation();
-    } else {
-        event.preventDefault();
-    }
-    
     // Initialize the simulated mouse event using the touch event's coordinates
     simulatedEvent.initMouseEvent(
       simulatedType,    // type
@@ -67,8 +60,15 @@
       null              // relatedTarget              
     );
 
-    // Dispatch the simulated event to the target element
-    event.target.dispatchEvent(simulatedEvent);
+    // Check if element is an input, a textarea or a paragraph
+    if ($(touch.target).is("input") || $(touch.target).is("textarea") || $(touch.target).is("p")) {
+        event.stopPropagation();
+    } else {
+        event.preventDefault();
+       // Dispatch the simulated event to the target element
+       event.target.dispatchEvent(simulatedEvent);
+    }
+
   }
 
   /**
