@@ -41,8 +41,8 @@
     var touch = event.originalEvent.changedTouches[0],
         simulatedEvent = document.createEvent('MouseEvents');
     
-    // Check if element is an input or a textarea
-    if ($(touch.target).is("input") || $(touch.target).is("textarea")) {
+    // Check if element is an input, a textarea or a paragraph
+    if ($(touch.target).is("input") || $(touch.target).is("textarea") || $(touch.target).is("p")) {
         event.stopPropagation();
     } else {
         event.preventDefault();
